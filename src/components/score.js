@@ -1,10 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Button from "./button";
 
-const Score = ({ score }) => {
+const Score = ({ refresh, score }) => {
   return (
     <section className="card">
-      <h1>Your Score</h1>
+      <h1>Your Score:</h1>
       <motion.span
         initial={{ rotate: 90, scale: 0 }}
         animate={{ rotate: 360, scale: 1 }}
@@ -17,6 +18,7 @@ const Score = ({ score }) => {
       >
         {score}
       </motion.span>
+      <Button onClick={refresh}>Play Again</Button>
     </section>
   );
 };

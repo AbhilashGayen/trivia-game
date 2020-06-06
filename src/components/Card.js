@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "./Button";
-import Timer from "./Timer";
+import Button from "./button";
+import Timer from "./timer";
 import { motion } from "framer-motion";
 
 const Card = (props) => {
@@ -30,6 +30,7 @@ const Card = (props) => {
               <Button
                 key={i}
                 onClick={checkAnswerFunction(answer, correct_answer)}
+                optionButton
               >
                 {answer}
               </Button>

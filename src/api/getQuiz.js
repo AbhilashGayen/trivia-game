@@ -7,7 +7,7 @@ const checkResponse = (response) => {
 
 export const getQuiz = (categoryId) => {
   return fetch(
-    `https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple`
+    `https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple&encode=base64`
   )
     .then(checkResponse)
     .catch((err) => {

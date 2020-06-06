@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Button from "./components/Button";
+import Button from "./components/button";
 
 import "./App.css";
 import { getQuiz } from "./api/getQuiz";
-import Card from "./components/Card";
+import Card from "./components/card";
 import Score from "./components/score";
 
 class App extends Component {
@@ -40,14 +40,23 @@ class App extends Component {
       <Card
         key={index}
         checkAnswerFunction={this.checkAnswer}
-        question={question}
+        question={atob(question)}
         duration={10}
-        correct_answer={correct_answer}
-        incorrect_answers={incorrect_answers}
+        correct_answer={atob(correct_answer)}
+        incorrect_answers={incorrect_answers.map((x) => atob(x))}
         currentQuestion={index}
         totalQuestions={length}
       />
     );
+  };
+
+  restartGame = () => {
+    console.clear();
+    return this.setState({
+      quizData: null,
+      rightAnswers: 0,
+      currentQuestion: 0,
+    });
   };
 
   fetchQuiz = () => {
@@ -73,7 +82,7 @@ class App extends Component {
           ? this.populateQuizCard(quizData[currentQuestion], currentQuestion)
           : ""}
         {quizData && currentQuestion === 10 ? (
-          <Score score={correctAnswerCount} />
+          <Score score={correctAnswerCount} refresh={this.restartGame} />
         ) : (
           ""
         )}
