@@ -1,3 +1,22 @@
+@font-face {
+  font-family: 'Quicksand';
+  src: local('Quicksand'), url('../src/assets/quicksand/Quicksand-Regular.ttf') format('truetype');
+}
+
+h1, h2, h3, p, buton{
+  margin: 0.5rem;
+  padding: 0.5rem;
+  color: white;
+  letter-spacing: 2px;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+html {
+  height: 100%;
+  font-family: "Mako", sans-serif;
+}
+
 body {
   background: rgb(100, 0, 123);
   background: radial-gradient(
@@ -6,54 +25,92 @@ body {
     rgba(62, 20, 86, 1) 100%
   );
   overflow: hidden;
-  margin: 0;
-  font-family: 'Quicksand';
-  src: url('/Quicksand-Light.woff2') format('woff2'),
-      url('/Quicksand-Light.woff') format('woff');
+  height: 100%;
+  position: relative;
+}
+
+.app {
+  position: absolute;
+  top: 3rem;
+  bottom: 12rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.card h1 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: white;
+  font-size: 2rem;
+  width: 75%;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  display: inline-block;
+  word-break: break-word;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 80%;
+  color: #fff;
+  text-align: center;
+}
+
+.card header {
+  align-self: flex-end;
+  text-transform: uppercase;
+}
+
+.card p {
   font-weight: 300;
-  font-style: normal;
+  font-size: 1rem;
 }
 
-body, ul, h1, h2, h3, p, button, a, div{
-  margin: 0;
-  padding: 0;
-  color: white;
-  font-family: 'Quicksand';
-  letter-spacing: 2px;
-  list-style-type: none;
-  text-decoration: none;
-}
-
-body{
-  background: rgb(100,0,123);
-  background: radial-gradient(circle, rgba(100,0,123,1) 0%, rgba(62,20,86,1) 100%);
-  overflow: hidden;
-}
-button{
-  color: white;
-  padding: 10px 30px;
-  font-size: 1em;
-  background: transparent;
-  border-radius: 50px;
+.button {
+  color: black;
+  background: white;
   border: 1px solid white;
-  margin: 40px auto 0;
   cursor: pointer;
   opacity: 0.7;
+  display: block;
+  width: 20rem;
+  margin: 0.3rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+button:focus {
+  outline: none;
+  box-shadow: none;
 }
 
-.home-container{
-  text-align: center;
-  max-width: 800px;
-}
-.home-button{
-  color: white;
-  padding: 15px 30px;
-  font-size: 1.6em;
-  border: 3px solid white;
-  margin: 30px 20px;
+.timer {
+  font-weight: 800;
+  font-size: 3rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.options-gird {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 20px;
+  background-color: transparent;
+}
+
+.option-box {
+  margin-top: 0.4rem;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.result{
+  font-size: 2.5rem;
+  color: #fff;
 }

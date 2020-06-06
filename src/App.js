@@ -4,6 +4,7 @@ import Button from "./components/Button";
 import "./App.css";
 import { getQuiz } from "./api/getQuiz";
 import Card from "./components/Card";
+import Score from "./components/score";
 
 class App extends Component {
   constructor(props) {
@@ -34,13 +35,17 @@ class App extends Component {
 
   populateQuizCard = (record, index) => {
     const { correct_answer, incorrect_answers, question } = record;
+    const { length } = this.state.quizData;
     return (
       <Card
         key={index}
         checkAnswerFunction={this.checkAnswer}
         question={question}
+        duration={10}
         correct_answer={correct_answer}
         incorrect_answers={incorrect_answers}
+        currentQuestion={index}
+        totalQuestions={length}
       />
     );
   };
@@ -54,15 +59,24 @@ class App extends Component {
   };
 
   render() {
+    const { quizData, currentQuestion, correctAnswerCount } = this.state;
     return (
-      <div>
-        <Button onClick={this.fetchQuiz}>Start Quiz</Button>
-        {this.state.quizData
-          ? this.populateQuizCard(
-              this.state.quizData[this.state.currentQuestion],
-              this.state.currentQuestion
-            )
+      <div className="app">
+        {!quizData ? (
+          <>
+            <h1>General Knowledge Quiz</h1>
+            <Button onClick={this.fetchQuiz}>Start Quiz</Button>
+          </>
+        ) : null}
+
+        {quizData && currentQuestion < 10
+          ? this.populateQuizCard(quizData[currentQuestion], currentQuestion)
           : ""}
+        {quizData && currentQuestion === 10 ? (
+          <Score score={correctAnswerCount} />
+        ) : (
+          ""
+        )}
       </div>
     );
   }

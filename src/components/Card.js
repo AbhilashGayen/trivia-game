@@ -1,35 +1,44 @@
 import React from "react";
 import Button from "./Button";
+import Timer from "./Timer";
+import { motion } from "framer-motion";
 
-class Card extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Card = (props) => {
+  const {
+    question,
+    correct_answer,
+    incorrect_answers,
+    checkAnswerFunction,
+    duration,
+    currentQuestion,
+    totalQuestions,
+  } = props;
+  const answers = [correct_answer].concat(incorrect_answers).sort(); //TODO: Implement array shuffle, but settling for sort now
+  return (
+    <motion.div className="card">
+      <p>
+        {currentQuestion + 1}/{totalQuestions}
+      </p>
 
-  render() {
-    const {
-      question,
-      correct_answer,
-      incorrect_answers,
-      checkAnswerFunction,
-    } = this.props;
-    const answers = correct_answer.split().concat(incorrect_answers);
-    return (
-      <section>
-        <h1>{question}</h1>
+      <Timer duration={duration} timeoutFn={checkAnswerFunction(true, false)} />
+
+      <h1>{question}</h1>
+      <div className="options-gird">
         {answers.map((answer, i) => {
           return (
-            <Button
-              key={i}
-              onClick={checkAnswerFunction(answer, correct_answer)}
-            >
-              {answer}
-            </Button>
+            <div className="option-box">
+              <Button
+                key={i}
+                onClick={checkAnswerFunction(answer, correct_answer)}
+              >
+                {answer}
+              </Button>
+            </div>
           );
         })}
-      </section>
-    );
-  }
-}
+      </div>
+    </motion.div>
+  );
+};
 
 export default Card;
