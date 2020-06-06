@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Button from "./components/button";
-
 import { getQuiz } from "./api/getQuiz";
 import Card from "./components/card";
 import Score from "./components/score";
@@ -9,36 +8,30 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      quizData: null,
-      correctAnswerCount: 0,
-      currentQuestion: 0,
-    };
-
     this.checkAnswer = this.checkAnswer.bind(this);
   }
 
   // Function to check correct answers
   checkAnswer(answer, correct_answer) {
+    const {
+      incrementCorrectAnswers,
+      updateCurrentQuestion,
+      currentQuestion,
+    } = this.props;
     return () => {
       console.log(answer + ":" + (answer === correct_answer)); // consoling the submitted answer with ture or false
       if (answer === correct_answer) {
-        this.setState(({ correctAnswerCount: previousCount }) => ({
-          // incrementing if answer is correct
-          correctAnswerCount: previousCount + 1,
-        }));
+        incrementCorrectAnswers(); // incrementing if answer is correct
       }
-      this.setState(({ currentQuestion: previousQuestion }) => ({
-        // incrementing current question index
-        currentQuestion: previousQuestion + 1,
-      }));
+      // incrementing current question index
+      updateCurrentQuestion(currentQuestion);
     };
   }
 
   // Populating Quiz Card one by one
   populateQuizCard = (record, index) => {
     const { correct_answer, incorrect_answers, question } = record;
-    const { length } = this.state.quizData;
+    const { length } = this.props.quizData;
     return (
       <Card
         key={index}
@@ -56,22 +49,19 @@ class App extends Component {
   // Removes sate data to start quiz again
   restartGame = () => {
     console.clear();
-    return this.setState({
-      quizData: null,
-      correctAnswerCount: 0,
-      currentQuestion: 0,
-    });
+    const { resetGame } = this.props;
+    resetGame();
   };
 
   // Fetch Quiz data
   fetchQuiz = () => {
-    getQuiz().then((response) => {
-      this.setState({ quizData: response.results });
-    });
+    const { setQuizData } = this.props;
+    getQuiz().then((quizData) => setQuizData(quizData.results));
   };
 
   render() {
-    const { quizData, currentQuestion, correctAnswerCount } = this.state;
+    const { quizData ,currentQuestion, correctAnswerCount } = this.props;
+
     return (
       <div className="app">
         {!quizData ? (
