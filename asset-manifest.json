@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/trivia/static/css/main.dbcec4a3.chunk.css",
-    "main.js": "/trivia/static/js/main.bda9232f.chunk.js",
-    "main.js.map": "/trivia/static/js/main.bda9232f.chunk.js.map",
-    "runtime-main.js": "/trivia/static/js/runtime-main.85d2a6a6.js",
-    "runtime-main.js.map": "/trivia/static/js/runtime-main.85d2a6a6.js.map",
-    "static/js/2.661cf3df.chunk.js": "/trivia/static/js/2.661cf3df.chunk.js",
-    "static/js/2.661cf3df.chunk.js.map": "/trivia/static/js/2.661cf3df.chunk.js.map",
-    "index.html": "/trivia/index.html",
-    "precache-manifest.e764904390d9bdc0784147fae5bc532a.js": "/trivia/precache-manifest.e764904390d9bdc0784147fae5bc532a.js",
-    "service-worker.js": "/trivia/service-worker.js",
-    "static/css/main.dbcec4a3.chunk.css.map": "/trivia/static/css/main.dbcec4a3.chunk.css.map",
-    "static/js/2.661cf3df.chunk.js.LICENSE.txt": "/trivia/static/js/2.661cf3df.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/trivia/static/media/Quicksand-Regular.316c2321.ttf"
+    "main.css": "/trivia-game/static/css/main.f462b1a5.chunk.css",
+    "main.js": "/trivia-game/static/js/main.33757e32.chunk.js",
+    "main.js.map": "/trivia-game/static/js/main.33757e32.chunk.js.map",
+    "runtime-main.js": "/trivia-game/static/js/runtime-main.0d05095d.js",
+    "runtime-main.js.map": "/trivia-game/static/js/runtime-main.0d05095d.js.map",
+    "static/js/2.661cf3df.chunk.js": "/trivia-game/static/js/2.661cf3df.chunk.js",
+    "static/js/2.661cf3df.chunk.js.map": "/trivia-game/static/js/2.661cf3df.chunk.js.map",
+    "index.html": "/trivia-game/index.html",
+    "precache-manifest.e3a8c0f434c5fa56f6ea24cee69fe6d9.js": "/trivia-game/precache-manifest.e3a8c0f434c5fa56f6ea24cee69fe6d9.js",
+    "service-worker.js": "/trivia-game/service-worker.js",
+    "static/css/main.f462b1a5.chunk.css.map": "/trivia-game/static/css/main.f462b1a5.chunk.css.map",
+    "static/js/2.661cf3df.chunk.js.LICENSE.txt": "/trivia-game/static/js/2.661cf3df.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/trivia-game/static/media/Quicksand-Regular.316c2321.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.85d2a6a6.js",
+    "static/js/runtime-main.0d05095d.js",
     "static/js/2.661cf3df.chunk.js",
-    "static/css/main.dbcec4a3.chunk.css",
-    "static/js/main.bda9232f.chunk.js"
+    "static/css/main.f462b1a5.chunk.css",
+    "static/js/main.33757e32.chunk.js"
   ]
 }
