@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       quizData: null,
       correctAnswerCount: 0,
+      currentQuestion: 0,
     };
 
     this.checkAnswer = this.checkAnswer.bind(this);
@@ -19,11 +20,15 @@ class App extends Component {
 
   checkAnswer(answer, correct_answer) {
     return () => {
+      console.log(answer === correct_answer);
       if (answer === correct_answer) {
         this.setState(({ correctAnswerCount: previousCount }) => ({
           correctAnswerCount: previousCount + 1,
         }));
       }
+      this.setState(({ currentQuestion: previousQuestion }) => ({
+        currentQuestion: previousQuestion + 1,
+      }));
     };
   }
 
@@ -53,7 +58,10 @@ class App extends Component {
       <div>
         <Button onClick={this.fetchQuiz}>Start Quiz</Button>
         {this.state.quizData
-          ? this.state.quizData.map((item, i) => this.populateQuizCard(item))
+          ? this.populateQuizCard(
+              this.state.quizData[this.state.currentQuestion],
+              this.state.currentQuestion
+            )
           : ""}
       </div>
     );
