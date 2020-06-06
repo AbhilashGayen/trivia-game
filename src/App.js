@@ -21,13 +21,15 @@ class App extends Component {
   // Function to check correct answers
   checkAnswer(answer, correct_answer) {
     return () => {
-      console.log(answer + ':' + (answer === correct_answer)); // consoling the submitted answer with ture or false
+      console.log(answer + ":" + (answer === correct_answer)); // consoling the submitted answer with ture or false
       if (answer === correct_answer) {
-        this.setState(({ correctAnswerCount: previousCount }) => ({ // incrementing if answer is correct
+        this.setState(({ correctAnswerCount: previousCount }) => ({
+          // incrementing if answer is correct
           correctAnswerCount: previousCount + 1,
         }));
       }
-      this.setState(({ currentQuestion: previousQuestion }) => ({ // incrementing current question index
+      this.setState(({ currentQuestion: previousQuestion }) => ({
+        // incrementing current question index
         currentQuestion: previousQuestion + 1,
       }));
     };
@@ -61,12 +63,11 @@ class App extends Component {
     });
   };
 
-  // Fetch Quiz data 
+  // Fetch Quiz data
   fetchQuiz = () => {
-    getQuiz()
-      .then((response) => {
-        this.setState({ quizData: response.results });
-      })
+    getQuiz().then((response) => {
+      this.setState({ quizData: response.results });
+    });
   };
 
   render() {
@@ -76,6 +77,7 @@ class App extends Component {
         {!quizData ? (
           <div className="card margin-top">
             <h1>General Knowledge Quiz</h1>
+            <h3>Total Questions : 10 | Time per Question : 10sec</h3>
             <Button onClick={this.fetchQuiz}>Start Quiz</Button>
           </div>
         ) : null}
