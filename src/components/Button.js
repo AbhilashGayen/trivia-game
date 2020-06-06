@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+// Button Component
 const Button = ({ onClick, children, id, optionButton }) => {
   return (
     <motion.button
@@ -11,7 +12,7 @@ const Button = ({ onClick, children, id, optionButton }) => {
         textShadow: "0px 0px 1px rgb(255,255,255)",
         boxShadow: "0px 0px 3px rgb(255,255,255)",
       }}
-      className={`${optionButton ? "optionButton" : ""}`}
+      className={`${optionButton ? "optionButton" : ""}`} //Adding optionsbutton class if quiz options 
       onClick={onClick}
       id={id}
     >

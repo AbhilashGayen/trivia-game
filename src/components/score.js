@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import Button from "./button";
 
+// Score Component - displays quiz score
+
 const Score = ({ refresh, score }) => {
   return (
     <section className="card">
@@ -18,6 +20,7 @@ const Score = ({ refresh, score }) => {
       >
         {score}
       </motion.span>
+      {/* Resets quiz data */}
       <Button onClick={refresh}>Play Again</Button>
     </section>
   );

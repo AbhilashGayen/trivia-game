@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Button from "./components/button";
 
-import "./App.css";
 import { getQuiz } from "./api/getQuiz";
 import Card from "./components/card";
 import Score from "./components/score";
@@ -19,20 +18,22 @@ class App extends Component {
     this.checkAnswer = this.checkAnswer.bind(this);
   }
 
+  // Function to check correct answers
   checkAnswer(answer, correct_answer) {
     return () => {
-      console.log(answer === correct_answer);
+      console.log(answer + ':' + (answer === correct_answer)); // consoling the submitted answer with ture or false
       if (answer === correct_answer) {
-        this.setState(({ correctAnswerCount: previousCount }) => ({
+        this.setState(({ correctAnswerCount: previousCount }) => ({ // incrementing if answer is correct
           correctAnswerCount: previousCount + 1,
         }));
       }
-      this.setState(({ currentQuestion: previousQuestion }) => ({
+      this.setState(({ currentQuestion: previousQuestion }) => ({ // incrementing current question index
         currentQuestion: previousQuestion + 1,
       }));
     };
   }
 
+  // Populating Quiz Card one by one
   populateQuizCard = (record, index) => {
     const { correct_answer, incorrect_answers, question } = record;
     const { length } = this.state.quizData;
@@ -50,21 +51,22 @@ class App extends Component {
     );
   };
 
+  // Removes sate data to start quiz again
   restartGame = () => {
     console.clear();
     return this.setState({
       quizData: null,
-      rightAnswers: 0,
+      correctAnswerCount: 0,
       currentQuestion: 0,
     });
   };
 
+  // Fetch Quiz data 
   fetchQuiz = () => {
     getQuiz()
       .then((response) => {
         this.setState({ quizData: response.results });
       })
-      .then(() => console.log(this.state.quizData));
   };
 
   render() {
@@ -72,10 +74,10 @@ class App extends Component {
     return (
       <div className="app">
         {!quizData ? (
-          <>
+          <div className="card margin-top">
             <h1>General Knowledge Quiz</h1>
             <Button onClick={this.fetchQuiz}>Start Quiz</Button>
-          </>
+          </div>
         ) : null}
 
         {quizData && currentQuestion < 10
