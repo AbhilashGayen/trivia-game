@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Route, Switch } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+import { getQuiz } from "./api/getQuiz";
+import Home from "./components/Home";
+import Card from "./components/Card";
+
+const fetchQuiz = () => {
+  getQuiz().then((response) => {
+    const questions = response.results;
+    console.log(questions);
+  });
+};
+
+class App extends Component {
+  constructor() {
+    super();
+    fetchQuiz();
+  }
+  render() {
+    return (
+      <div>
+        <Switch>
+          <Route exact path="/" component={Home} />;
+          <Route path="/quiz" component={Card} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
