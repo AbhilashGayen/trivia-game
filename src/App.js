@@ -1,30 +1,60 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import Button from "./components/Button";
 
 import "./App.css";
 import { getQuiz } from "./api/getQuiz";
-import Home from "./components/Home";
 import Card from "./components/Card";
 
-const fetchQuiz = () => {
-  getQuiz().then((response) => {
-    const questions = response.results;
-    console.log(questions);
-  });
-};
-
 class App extends Component {
-  constructor() {
-    super();
-    fetchQuiz();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      quizData: null,
+      correctAnswerCount: 0,
+    };
+
+    this.checkAnswer = this.checkAnswer.bind(this);
   }
+
+  checkAnswer(answer, correct_answer) {
+    return () => {
+      if (answer === correct_answer) {
+        this.setState(({ correctAnswerCount: previousCount }) => ({
+          correctAnswerCount: previousCount + 1,
+        }));
+      }
+    };
+  }
+
+  populateQuizCard = (record, index) => {
+    const { correct_answer, incorrect_answers, question } = record;
+    return (
+      <Card
+        key={index}
+        checkAnswerFunction={this.checkAnswer}
+        question={question}
+        correct_answer={correct_answer}
+        incorrect_answers={incorrect_answers}
+      />
+    );
+  };
+
+  fetchQuiz = () => {
+    getQuiz()
+      .then((response) => {
+        this.setState({ quizData: response.results });
+      })
+      .then(() => console.log(this.state.quizData));
+  };
+
   render() {
     return (
       <div>
-        <Switch>
-          <Route exact path="/" component={Home} />;
-          <Route path="/quiz" component={Card} />
-        </Switch>
+        <Button onClick={this.fetchQuiz}>Start Quiz</Button>
+        {this.state.quizData
+          ? this.state.quizData.map((item, i) => this.populateQuizCard(item))
+          : ""}
       </div>
     );
   }
